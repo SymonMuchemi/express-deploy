@@ -1,29 +1,23 @@
-name: Deploy to AWS EC2
+name: Deploy to EC2 Runner
 
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 
 jobs:
-    deploy:
-        runs-on: self-hosted
+  deploy:
+    runs-on: self-hosted
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-            
-            - name: Deploy to EC2
-              uses: appleboy/ssh-action@master
-              with:
-                host: 16.16.66.244
-                username: ubuntu
-                script: |
-                    cd ~/express-app
-                    git pull origin main
-                    sudo docker stop express-app || true
-                    sudo docker remove express-app || true
-                    sudo docker build -t express-app .
-                    sudo docker run -d -p 3000:3000 --name express-app express-app
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-
+    - name: Deploy Application
+      run: |
+        cd ~/express-app
+        git pull origin main
+        sudo docker stop express-app || true
+        sudo docker rm express-app || true
+        sudo docker build -t express-app .
+        sudo docker run -d -p 3000:3000 --name express-app express-app
