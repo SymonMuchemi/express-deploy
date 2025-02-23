@@ -15,7 +15,7 @@ jobs:
 
     - name: Deploy Application
       run: |
-        cd ~/express-app
+        cd ~/express-deploy
         git pull origin main
         sudo docker stop express-app || true
         sudo docker rm express-app || true
