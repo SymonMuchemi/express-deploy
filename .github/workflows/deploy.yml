@@ -15,7 +15,6 @@ jobs:
 
     - name: Deploy Application
       run: |
-        mkdir -p ~/express-deploy
         cd ~/express-deploy
         git pull origin master
         sudo docker stop express-deploy || true
