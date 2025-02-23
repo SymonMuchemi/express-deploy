@@ -16,8 +16,8 @@ jobs:
     - name: Deploy Application
       run: |
         cd ~/express-deploy
-        git pull origin main
-        sudo docker stop express-app || true
-        sudo docker rm express-app || true
-        sudo docker build -t express-app .
-        sudo docker run -d -p 3000:3000 --name express-app express-app
+        git pull origin master
+        sudo docker stop express-deploy || true
+        sudo docker rm express-deploy || true
+        sudo docker build -t express-deploy .
+        sudo docker run -d -p 3000:3000 --name express-deploy express-deploy
