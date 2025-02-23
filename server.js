@@ -4,6 +4,13 @@ const app = express();
 app.get('/hello-world', (req, res) => {
   res.status(200).json({
     success: true,
+    message: 'I am woriking!',
+  });
+});
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
     message: 'Welcome DevOps!',
   });
 });
